@@ -14,6 +14,6 @@ public class Message:Auditable
     public Project Project { get; set; }
     public MessageStatus MessadeStatus { get; set; }
     public string MessageText { get; set; }
-    public DateTime TimeStamp { get; set; }= DateTime.Now;
+    public DateTime TimeStamp { get; set; }= DateTime.UtcNow;
 
 }
