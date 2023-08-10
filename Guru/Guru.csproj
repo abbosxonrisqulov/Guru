@@ -7,4 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Guru.Domain\Guru.Domain.csproj" />
+    <ProjectReference Include="..\Guru.Service\Guru.Service.csproj" />
+  </ItemGroup>
+
 </Project>

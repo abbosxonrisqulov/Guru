@@ -9,13 +9,13 @@ public class AppDbContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        string stringConnection = "Host=localhost; Port=5432; User Id=postgres; Database=NebulaDb; Password=1234;";
+        string stringConnection = "Host=localhost; Port=5432; User Id=postgres; Database=FreelanceDb; Password=1234;";
         optionsBuilder.UseNpgsql(stringConnection);
     }
 
     public DbSet<User> Users { get; set; }
     public DbSet<Project> Projects { get; set; }
-    public DbSet<Task> Tasks { get; set; }
+    public DbSet<Mission> Tasks { get; set; }
     public DbSet<Message> Messages { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -27,25 +27,20 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<Message>()
             .HasOne(m => m.User)
-            .WithMany()
+            .WithMany(c => c.Messages)
             .HasForeignKey(m => m.SenderId);
-
-        modelBuilder.Entity<Message>()
-            .HasOne(m => m.User)
-            .WithMany()
-            .HasForeignKey(m => m.ReceiverId);
 
         modelBuilder.Entity<Message>()
             .HasOne(m => m.Project)
             .WithMany()
             .HasForeignKey(m => m.ProjectId);
 
-        modelBuilder.Entity<Task>()
+        modelBuilder.Entity<Mission>()
             .HasOne(t => t.User)
-            .WithMany()
+            .WithMany(t=>t.Tasks)
             .HasForeignKey(t => t.AssignedTo);
 
-        modelBuilder.Entity<Task>()
+        modelBuilder.Entity<Mission>()
            .HasOne(t => t.Project)
            .WithMany()
            .HasForeignKey(t => t.ProjectId);

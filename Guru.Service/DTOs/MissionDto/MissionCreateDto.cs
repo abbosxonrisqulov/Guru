@@ -1,10 +1,11 @@
-﻿using Guru.Domain.Commons;
-using Guru.Domain.Entities.Projects;
+﻿using Guru.Domain.Entities.Projects;
 using Guru.Domain.Entities.Users;
 using Guru.Domain.Enums.Priorities;
 using Guru.Domain.Enums.TaskStatuses;
 
-public class Task : Auditable
+namespace Guru.Service.DTOs.MissionDto;
+
+public class MissionCreateDto
 {
     public string TaskName { get; set; }
     public long ProjectId { get; set; }
@@ -15,4 +16,3 @@ public class Task : Auditable
     public Priority Priority { get; set; }
     public Status Status { get; set; }
 }
-

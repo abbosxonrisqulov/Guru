@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="Mappers\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Guru.DAL\Guru.DAL.csproj" />
+    <ProjectReference Include="..\Guru.Domain\Guru.Domain.csproj" />
   </ItemGroup>
 
 </Project>
