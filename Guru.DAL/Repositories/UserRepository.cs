@@ -1,6 +1,7 @@
 ﻿using Guru.DAL.DbContexts;
 using Guru.DAL.IRepositories;
 using Guru.Domain.Entities.Users;
+using Microsoft.EntityFrameworkCore;
 
 namespace Guru.DAL.Repositories;
 
@@ -12,5 +13,5 @@ public class UserRepository : Repository<User>, IUserRepository
         this.dbContext = appDbContext;
     }
     public async Task<User> SelectByPhone(string phoneNumber)
-            =>  dbContext.Users.FirstOrDefault(x=>x.Phone.Equals(phoneNumber));
+            => await  dbContext.Users.FirstOrDefaultAsync(x=>x.Phone.Equals(phoneNumber));
 }
