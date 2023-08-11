@@ -3,6 +3,7 @@ using Guru.DAL.DbContexts;
 using Guru.DAL.IRepositories;
 using Guru.DAL.Repositories;
 using Guru.Domain.Entities.Users;
+using Guru.Domain.Enums.Roles;
 using Guru.Service.DTOs.ProjectDto;
 using Guru.Service.DTOs.UserDto;
 using Guru.Service.Helpers;
@@ -136,5 +137,17 @@ public class UserService : IUserService
             Data = result
         };
     }
+    public async Task<Response<IEnumerable<UserResultDto>>> GetByRole(Role role)
+    {
+        var result= await unitOfWork.UserRepository.SelectAll().Where(x=> x.Role.Equals(role)).ToListAsync();
 
+        var data=mapper.Map<UserResultDto>(result);
+
+        return new Response<IEnumerable<UserResultDto>>
+        {
+            StatusCode = 200,
+            Message="Succes",
+            Data=data
+        };
+    }
 }

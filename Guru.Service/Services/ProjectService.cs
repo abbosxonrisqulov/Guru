@@ -6,6 +6,7 @@ using Guru.Service.Helpers;
 using Guru.Service.Interfaces;
 using Guru.Service.Mappers;
 using Microsoft.EntityFrameworkCore;
+using System.Xml;
 
 namespace Guru.Service.Services;
 
@@ -139,6 +140,13 @@ public class ProjectService : IProjectService
         var data = mapper.Map<IEnumerable<ProjectResultDto>>(result);
 
         return new Response<IEnumerable<ProjectResultDto>> { StatusCode = 200, Message = "Succes", Data = data };
+    }
+
+    public TimeSpan TimeDifference(ProjectResultDto dto)
+    {
+        TimeSpan difference = dto.EndDate-dto.StartDate;
+
+        return difference;
     }
 
 }
