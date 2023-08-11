@@ -14,5 +14,5 @@ public class ProjectRepository : Repository<Project>, IProjectRepository
     }
 
     public async Task<Project> GetByName(string name)
-        => await dbContext.Projects.FirstOrDefaultAsync(x => x.ProjectName.Equals(name));
+        =>  dbContext.Projects.FirstOrDefault(x => x.ProjectName.Equals(name));
 }

@@ -12,4 +12,5 @@ public interface IProjectService
     Task<Response<bool>> DeleteAsycn(long id);
     Task<Response<ProjectResultDto>> SearchById(long id);
     Task<Response<IEnumerable<ProjectResultDto>>> GetAll();
+    Task<Response<IEnumerable<ProjectResultDto>>> GetByClientId(long id);
 }

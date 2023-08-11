@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Guru.DAL.DbContexts;
 using Guru.DAL.IRepositories;
 using Guru.DAL.Repositories;
 using Guru.Domain.Entities.Users;
+using Guru.Service.DTOs.ProjectDto;
 using Guru.Service.DTOs.UserDto;
 using Guru.Service.Helpers;
 using Guru.Service.Interfaces;
@@ -14,16 +16,18 @@ public class UserService : IUserService
 {
     private readonly UnitOfWork unitOfWork;
     private readonly IMapper mapper;
+    private readonly AppDbContext dbContext;
 
 
     public UserService()
     {
+        dbContext= new AppDbContext();
         unitOfWork = new UnitOfWork();
         this.mapper = new Mapper(new MapperConfiguration(c => c.AddProfile<AutoMapping>()));
     }
     public async Task<Response<UserResultDto>> CreateAsycn(UserCreateDto dto)
     {
-        var exist= await unitOfWork.UserRepository.SelectByPhone(dto.Phone);
+        var exist= await unitOfWork.UserRepository.SelectByEmail(dto.Email);
         if(exist is not null)
         {
             return new Response<UserResultDto>()
@@ -35,7 +39,7 @@ public class UserService : IUserService
         User mapUser = mapper.Map<User>(dto);
 
         await unitOfWork.UserRepository.CreateAsync(mapUser);
-        await unitOfWork.SaveAsync();
+        unitOfWork.SaveAsync();
 
         var res = mapper.Map<UserResultDto>(mapUser);
 
@@ -69,8 +73,6 @@ public class UserService : IUserService
             Data = true
         };
     }
-
-
 
     public async Task<Response<IEnumerable<UserResultDto>>> GetAll()
     {
@@ -134,4 +136,5 @@ public class UserService : IUserService
             Data = result
         };
     }
+
 }

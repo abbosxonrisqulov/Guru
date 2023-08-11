@@ -1,4 +1,5 @@
 ﻿using Guru.Domain.Entities.Messages;
+using Guru.Domain.Entities.Projects;
 using Guru.Domain.Enums.Roles;
 
 namespace Guru.Service.DTOs.UserDto;
@@ -16,4 +17,5 @@ public class UserResultDto
     public string Bio { get; set; }
     public ICollection<Message> Messages { get; set; }
     public ICollection<Mission> Tasks { get; set; }
+    public ICollection<Project> Projects { get; set; }
 }

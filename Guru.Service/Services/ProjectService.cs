@@ -132,4 +132,13 @@ public class ProjectService : IProjectService
         };
     }
 
+    public async Task<Response<IEnumerable<ProjectResultDto>>> GetByClientId(long id)
+    {
+        var result= GetAll().Result.Data.Where(x => x.ClientId == id);
+
+        var data = mapper.Map<IEnumerable<ProjectResultDto>>(result);
+
+        return new Response<IEnumerable<ProjectResultDto>> { StatusCode = 200, Message = "Succes", Data = data };
+    }
+
 }

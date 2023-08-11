@@ -1,16 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Guru.DAL\Guru.DAL.csproj" />
     <ProjectReference Include="..\Guru.Domain\Guru.Domain.csproj" />
     <ProjectReference Include="..\Guru.Service\Guru.Service.csproj" />
-    <ProjectReference Include="..\Guru.View\Guru.View.csproj" />
   </ItemGroup>
 
 </Project>

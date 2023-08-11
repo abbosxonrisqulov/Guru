@@ -35,6 +35,6 @@ public class UnitOfWork : IUnitOfWork
 
     public async Task SaveAsync()
     {
-        await appDbContext.SaveChangesAsync();
+       appDbContext.SaveChangesAsync();
     }
 }

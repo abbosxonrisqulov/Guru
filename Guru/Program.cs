@@ -1,4 +1,5 @@
 ﻿
+using Guru.Domain.Entities.Users;
 using Guru.Domain.Enums.ProjectStatuses;
 using Guru.Domain.Enums.Roles;
 using Guru.Service.DTOs.MessageDto;
@@ -6,21 +7,29 @@ using Guru.Service.DTOs.MissionDto;
 using Guru.Service.DTOs.ProjectDto;
 using Guru.Service.DTOs.UserDto;
 using Guru.Service.Services;
+using Guru.View;
+using Guru.View.Clients;
+using System.Numerics;
 
+//View view = new View();
 
-MessageService messageService = new MessageService();
+//view.Output();
 
-
-MessageUpdateDto messageCreateDto = new MessageUpdateDto()
+UserCreateDto userCreateDto = new UserCreateDto()
 {
-    Id=2,
-    SenderId = 2,
-    ReceiverId = 1,
-    MessadeStatus = Guru.Domain.Enums.MessageStatuses.MessageStatus.Send,
-    MessageText = "",
-    TimeStamp = DateTime.UtcNow,
-    ProjectId = 1,
+    FirstName="Fayzulla",
+    LastName="XAyrullayev",
+    NickName="Kuyovbola",
+    Email="xayrullayev@gmail.com",
+    Password="1q2w3e4r",
+    Role=Role.ProjectManager,
+    Phone="+998998765324",
+    Bio ="Project meneger"
 };
-var resuilt=await messageService.UpdateAsync(messageCreateDto);
 
-Console.WriteLine(resuilt.Data.MessageText);
+UserService userService = new UserService();
+
+await userService.CreateAsycn(userCreateDto);
+
+
+
